@@ -5,11 +5,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/*
+ * Student ID: W2051634 | 20230327
+ * Name      : Manazir Ali
+ */
+
 public class NetworkParser {
 
     /**
-     * Parses the network description from the given input file and
-     * creates an AdjacencyList representation of the network.
+     * Parses the network description from the given input file and creates an AdjacencyList representation of the network.
      *
      * @param filePath The path to the input file.
      * @return An AdjacencyList representing the network.
@@ -50,7 +54,7 @@ public class NetworkParser {
 
     public static void main(String[] args) {
         try {
-            AdjacencyList graph = parseNetwork("input.txt"); // Replace "input.txt" with your file path
+            AdjacencyList graph = parseNetwork("input.txt");
             System.out.println(graph); // Print the graph (for testing)
         } catch (FileNotFoundException e) {
             System.err.println("Input file not found: " + e.getMessage());

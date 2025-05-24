@@ -3,11 +3,14 @@ package data_structures;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Student ID: W2051634 | 20230327
+ * Name      : Manazir Ali
+ */
+
 public class AdjacencyList {
-    private List<List<Edge>> adjList; // A list where each index represents a node,
-    // and the list at that index contains the edges
-    // originating from that node.
-    private int  numNodes;           // The total number of nodes in the network.
+    private final List<List<Edge>> adjList; // A list where each index represents a node, and the list at that index contains the edges originating from that node.
+    private final int  numNodes;           // The total number of nodes in the network.
 
     /**
      * Constructor for the AdjacencyList class.
@@ -29,15 +32,13 @@ public class AdjacencyList {
      * @param capacity The capacity of the edge.
      */
     public void addEdge(int source, int destination, int capacity) {
-        // We only store outgoing edges from each node.
-        // For node 'source', we add an edge to 'destination' with the given capacity.
+        // store outgoing edges from each node.
         adjList.get(source).add(new Edge(destination, capacity));
     }
 
     /**
      * Returns a list of edges originating from a given node.
-     * These represent the neighbors of the node and the capacities of the edges
-     * connecting to them.
+     * These represent the neighbors of the node and the capacities of the edges connecting to them.
      * @param node The node for which to retrieve the neighbors.
      * @return A List of Edge objects connected to the given node.
      */
@@ -55,7 +56,6 @@ public class AdjacencyList {
 
     /**
      * Returns a string representation of the adjacency list.
-     * Useful for debugging and visualizing the graph structure.
      * @return A string showing each node and its outgoing edges.
      */
     @Override
@@ -66,9 +66,4 @@ public class AdjacencyList {
         }
         return sb.toString();
     }
-
-    // You'll likely need to add more methods here later for:
-    // - Getting the capacity of a specific edge (source to destination).
-    // - Setting the capacity of a specific edge.
-    // - Handling residual capacities for the Ford-Fulkerson algorithm.
 }

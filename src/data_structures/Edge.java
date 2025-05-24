@@ -1,7 +1,12 @@
 package data_structures;
 
+/*
+ * Student ID: W2051634 | 20230327
+ * Name      : Manazir Ali
+ */
+
 public class Edge {
-    private int destination; // The node this edge points to
+    private final int destination; // The node this edge points to
     private int capacity;    // The maximum flow this edge can carry
 
     /**
@@ -40,7 +45,6 @@ public class Edge {
 
     /**
      * Returns a string representation of the Edge object.
-     * Useful for debugging.
      * @return A string in the format "(destination, capacity)".
      */
     @Override

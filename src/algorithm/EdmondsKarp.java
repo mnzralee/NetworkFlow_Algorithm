@@ -2,6 +2,7 @@ package algorithm;
 
 import data_structures.AdjacencyList;
 import data_structures.Edge;
+import parser.NetworkParser;
 
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
@@ -10,16 +11,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
+/*
+ * Student ID: W2051634 | 20230327
+ * Name      : Manazir Ali
+ */
+
 
 public class EdmondsKarp {
 
-    private AdjacencyList graph;
-    private int source;
-    private int sink;
+    private final AdjacencyList graph;
+    private final int source;
+    private final int sink;
     private int maxFlow;
 
     // a copy of the initial graph to display original capacities
-    private AdjacencyList originalGraph;
+    private final AdjacencyList originalGraph;
 
 
     /**
@@ -188,7 +194,7 @@ public class EdmondsKarp {
      * @param pathFlow The bottleneck capacity of this path.
      */
     private void printAugmentingPath(int[] parent, int s, int t, int pathFlow) {
-        Stack<Integer> path = new Stack<>();
+        Stack<Integer> path = new Stack<>(); // since the bfs parent array stores the augmenting path in reverse order a stack is chosen to correct, because it's a LIFO Data Structure.
         int curr = t;
         while (curr != -1) {
             path.push(curr);
@@ -207,7 +213,7 @@ public class EdmondsKarp {
     }
 
 //    public static void main(String[] args) {
-//        // Example usage (replace with your actual graph and source/sink)
+//        // Example usage
 //        AdjacencyList graph = new AdjacencyList(6);
 //        graph.addEdge(0, 1, 10);
 //        graph.addEdge(0, 2, 5);
@@ -221,31 +227,30 @@ public class EdmondsKarp {
 //        EdmondsKarp edmondsKarp = new EdmondsKarp(graph, 0, 5);
 //        edmondsKarp.runEdmondsKarp();
 //        System.out.println("Max Flow: " + edmondsKarp.getMaxFlow()); // Output: 25
-    //    }
+//    }
+
+
     // The main method for testing the algorithm with the parser.
     public static void main(String[] args) {
-        // Assume 'input.txt' is in the project root directory.
-        // You might need to adjust the path if it's elsewhere.
-        String filePath = "input.txt"; // Example file path
+        // 'input.txt' has to be in the project root directory.
+        String filePath = "benchmarks/ladder_1.txt"; // Example file path
 
         try {
-            // Parse the network from the file using your NetworkParser
-            parser.NetworkParser parser = new parser.NetworkParser(); // Instantiate if not static, or just call static method
-            AdjacencyList graph = parser.parseNetwork(filePath);
+            // Parse the network from the input.txt file using NetworkParser class
+            AdjacencyList graph = NetworkParser.parseNetwork(filePath);
 
             int sourceNode = 0; // Example: Source node is 0
-            int sinkNode = graph.getNumNodes() - 1; // Example: Sink node is the last node
+            int sinkNode = graph.getNumNodes() - 1; // Sink node refers to the last node
 
             System.out.println("Initial Network Graph:");
-            System.out.println(graph); // Print initial graph (optional but good for context)
+            System.out.print(graph); // Print the initial graph
 
             EdmondsKarp edmondsKarp = new EdmondsKarp(graph, sourceNode, sinkNode);
-            edmondsKarp.runEdmondsKarp(); // Run the algorithm, which will print augmentation steps
+            edmondsKarp.runEdmondsKarp(); // calls algorithm to run and print augmentation steps
 
             System.out.println("\nFinal Max Flow: " + edmondsKarp.getMaxFlow());
 
-            // You could also print the residual graph here to see the final capacities,
-            // but the coursework mainly asks for the steps.
+            // print the residual graph "the potential graph for more flow".
              System.out.println("\nFinal Residual Graph:");
              System.out.println(graph);
 
